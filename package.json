@@ -1,0 +1,32 @@
+{
+  "name": "kill-the-mouse",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^2.0.0"
+  },
+  "dependencies": {
+    "iohook": "^0.1.16",
+    "menubar": "^5.2.3",
+    "moment": "^2.22.1",
+    "moment-duration-format": "^2.2.2"
+  },
+  "iohook": {
+    "targets": [
+      "node-57",
+      "electron-57"
+    ],
+    "platforms": [
+      "win32",
+      "darwin",
+      "linux"
+    ],
+    "arches": [
+      "x64",
+      "ia32"
+    ]
+  }
+}
