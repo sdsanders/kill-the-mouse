@@ -1,4 +1,4 @@
-const { Notification } = require('electron');
+const { globalShortcut, Notification } = require('electron');
 const ioHook = require('iohook');
 const menubar = require('menubar');
 const moment = require('moment');
@@ -12,6 +12,7 @@ const streak = {
   active: false,
   keys: 0
 };
+let isMenuBarOpen = false;
 
 function handleKeyboardEvent(event) {
   if (!streak.active) {
@@ -39,6 +40,14 @@ function handleMouseEvent(event) {
   streak.keys = 0;
 }
 
+function registerShortcut() {
+  if (isMenuBarOpen) {
+    mb.hideWindow();
+  } else {
+    mb.showWindow();
+  }
+}
+
 function ready () {
   let index = 0;
 
@@ -50,6 +59,10 @@ function ready () {
   ioHook.on('mousewheel', handleMouseEvent);
 
   ioHook.start();
+
+  globalShortcut.register('CommandOrControl+K', registerShortcut);
 }
 
 mb.on('ready', ready);
+mb.on('after-show', () => { isMenuBarOpen = true; });
+mb.on('after-hide', () => { isMenuBarOpen = false; });
