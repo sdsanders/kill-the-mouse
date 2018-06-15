@@ -28,12 +28,12 @@ class MainComponent extends React.Component {
   }
 
   handleMinStreakChange(event) {
-    this.setState({ value: event.target.value });
+    this.setState({ minStreak: event.target.value });
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    ipcRenderer.send('min-streak', this.state.value);
+    ipcRenderer.send('min-streak', this.state.minStreak);
   }
   currentStreak(event, arg) {
     this.setState(() => ({ currentStreak: arg }))
