@@ -3,9 +3,9 @@ const ioHook = require('iohook');
 const menubar = require('menubar');
 const moment = require('moment');
 const momentDurationFormatSetup = require('moment-duration-format');
-const url = require('url')
+const url = require('url');
 const path = require('path');
-const { ipcMain } = require('electron')
+const { ipcMain } = require('electron');
 
 momentDurationFormatSetup(moment);
 
@@ -90,8 +90,8 @@ const windowRendered = () => {
 // startup health-check pings
 ipcMain.on('asynchronous-message', (event, arg) => {
   console.log(arg) // prints "ping"
-  event.sender.send('asynchronous-reply', 'pong')
-})
+  event.sender.send('asynchronous-reply', 'pong');
+});
 
 ipcMain.on('min-streak', (event, arg) => {
   console.log('new min-streak: ', arg);
@@ -105,4 +105,4 @@ ipcMain.on('quit', (event, arg) => {
 mb.on('ready', ready);
 mb.on('after-show', () => { isMenuBarOpen = true; });
 mb.on('after-hide', () => { isMenuBarOpen = false; });
-mb.on('after-create-window', windowRendered)
+mb.on('after-create-window', windowRendered);

@@ -1,10 +1,10 @@
-const { ipcRenderer } = require('electron')
+const { ipcRenderer } = require('electron');
 
 // start up heath-check
 ipcRenderer.on('asynchronous-reply', (event, arg) => {
   console.log(arg) // prints "pong"
 })
-ipcRenderer.send('asynchronous-message', 'ping')
+ipcRenderer.send('asynchronous-message', 'ping');
 
 // front end
 const React = require('react');
@@ -38,12 +38,16 @@ class MainComponent extends React.Component {
   currentStreak(event, arg) {
     this.setState(() => ({ currentStreak: arg }))
   }
-  streakBroken(event, arg) {
-    // const { keystrokes, duration, timestamp } = arg
+  
+  streakBroken(event, { keystrokes, duration, timestamp }) {
     this.setState(() => ({
       streaks: [
         ...this.state.streaks,
-        arg
+        {
+          keystrokes,
+          duration,
+          timestamp
+        }
       ]
     }));
   }
