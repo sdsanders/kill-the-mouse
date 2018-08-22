@@ -76,7 +76,7 @@ class MainComponent extends React.Component {
                     .map((streak, index) => {
                       return (
                         <li key={index}>
-                          {streak.keystrokes} keys, {streak.duration}.  {moment(streak.timestamp).format("ddd, hA")}
+                          {streak.keystrokes} keys, {streak.duration}.  {moment(streak.timestamp).format('l, LT')}
                         </li>
                       )
                     })}
